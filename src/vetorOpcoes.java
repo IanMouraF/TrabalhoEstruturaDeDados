@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class vetorOpcoes {
-
+    Main loop = new Main();
     public int [] vetorInteiro = new int[10];
     Scanner scan = new Scanner(System.in);
     public void vetorOpcoes(){
@@ -46,8 +46,7 @@ public class vetorOpcoes {
                vetorOpcoes();
            }
            if(opcaoSelecionada == 5){
-               opcaoSelecionada = 6;
-               break;
+               Main.loop();
            }
        }
     }

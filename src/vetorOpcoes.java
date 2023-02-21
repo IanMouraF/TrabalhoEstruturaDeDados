@@ -106,11 +106,14 @@ public class vetorOpcoes {
         System.out.println("Qual valor você deseja verificar se está presente no vetor?:");
         int vetorPesquisado = scan.nextInt();
 
+        int indiceTeste = 0;
+
         for (int i = 0; i < vetorInteiro.length; i++) {
             if (vetorPesquisado == vetorInteiro[i]) {
                 System.out.println("O valor pesquisado " + vetorPesquisado + " está presente no índice " + i);
+                indiceTeste = 1;
             }
-            if (vetorPesquisado != vetorInteiro[i] && i == tamanhoVetor) {
+            if (indiceTeste == 0 && i == tamanhoVetor) {
                 System.out.println("O valor pesquisado " + vetorPesquisado + " está presente no índice -1"); //foi requisitado no trabalho colocar "-1" para índice inexistente
             }
         }

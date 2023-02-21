@@ -6,10 +6,10 @@ public class Main {
     static boolean y = true;
     public static int Menu() {
         System.out.println(
-                "------------------------------\n" +
-                "|   1 -  Vetor               |\n" +
-                "|   2 -  Lista               |\n" +
-                "------------------------------\n" +
+                "-------------------\n" +
+                "|   1 -  Vetor    |\n" +
+                "|   2 -  Lista    |\n" +
+                "-------------------\n" +
                 "Selecione a opcao desejada: ");
 
                 x = scan.nextInt();

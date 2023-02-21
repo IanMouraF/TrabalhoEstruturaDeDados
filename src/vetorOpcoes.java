@@ -2,10 +2,22 @@ import java.util.Scanner;
 
 public class vetorOpcoes {
 
-    public int[] vetorInteiro = new int[10];
-    Scanner scan = new Scanner(System.in);
+
+    static Scanner scan = new Scanner(System.in);
+
+    static int[] vetorInteiro;
+
+    public static int[] criarVetor() {
+        System.out.println("Quantos espaços (índices) você deseja para o vetor? (contando com 0)");
+        int indiceScan = scan.nextInt();
+        int[] novoVetor = new int[indiceScan];
+        vetorInteiro = novoVetor;
+        return novoVetor;
+    }
+
 
     public void vetorOpcoes() {
+
         String listaPrintada =
                 "------------------------------\n" +
                         "|           Vetor            |\n" +
@@ -17,6 +29,7 @@ public class vetorOpcoes {
                         "|   5 -  Voltar              |\n" +
                         "------------------------------\n" +
                         "Selecione a opcao desejada: ";
+
 
         System.out.println(listaPrintada);
 
@@ -54,23 +67,25 @@ public class vetorOpcoes {
 
     public void inserirDado() {
 
+        int tamanhoVetor = vetorInteiro.length - 1;
+
         System.out.println("Escolha um número inteiro para adicionar");
         int inteiroVetor = scan.nextInt(); //o inteiro que vai ser adicionado
 
-        System.out.println("Escolha um índice de 0 a 9 para inserir seu inteiro");
+        System.out.println("Escolha um índice de 0 a " + tamanhoVetor + " para inserir seu inteiro");
         int indiceVetor = scan.nextInt(); //o índice do vetor ao qual o inteiro vai ser adicionado
 
 
         try {
             if (vetorInteiro[indiceVetor] != 0) {
                 System.out.println("Esse índice já tem um valor, use o alterar dado se quiser mudá-lo");
-                inserirDado();
+                vetorOpcoes();
             } else {
                 vetorInteiro[indiceVetor] = inteiroVetor;
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Escolha um índice de 0 a 9!");
+            System.out.println("Escolha um índice de 0 a " + tamanhoVetor + "!");
             inserirDado();
         }
 
@@ -85,35 +100,42 @@ public class vetorOpcoes {
     }
 
     public void pesquisarDado() {
+
+        int tamanhoVetor = vetorInteiro.length - 1;
+
         System.out.println("Qual valor você deseja verificar se está presente no vetor?:");
         int vetorPesquisado = scan.nextInt();
 
         for (int i = 0; i < vetorInteiro.length; i++) {
             if (vetorPesquisado == vetorInteiro[i]) {
                 System.out.println("O valor pesquisado " + vetorPesquisado + " está presente no índice " + i);
-                break;
             }
-            if (vetorPesquisado != vetorInteiro[i] && i == 9) {
-                System.out.println("O valor pesquisado " + vetorPesquisado + " está presente no índice -1");
+            if (vetorPesquisado != vetorInteiro[i] && i == tamanhoVetor) {
+                System.out.println("O valor pesquisado " + vetorPesquisado + " está presente no índice -1"); //foi requisitado no trabalho colocar "-1" para índice inexistente
             }
         }
     }
 
     public void alterarDado() {
 
+        int tamanhoVetor = vetorInteiro.length - 1;
+
         System.out.println("Escolha um índice para alterar o valor contido nele");
         int indiceVetor2 = scan.nextInt();
 
-        System.out.println("Escolha o novo valor a ser contido no índice");
-        int inteiroVetor2 = scan.nextInt();
-
-
-        if (indiceVetor2 > 10 || indiceVetor2 < 0) {
-            System.out.println("Escolha um índice de 0 a 9!");
-            inserirDado();
-
+        if (indiceVetor2 == 0) {
+            System.out.println("Esse índice ainda não tem um valor a ser alterado, utilize Inserir Dado");
         } else {
-            vetorInteiro[indiceVetor2] = inteiroVetor2;
+
+            if (indiceVetor2 > tamanhoVetor || indiceVetor2 < 0) {
+                System.out.println("Escolha um índice de 0 a " + tamanhoVetor + "!");
+                alterarDado();
+
+            } else {
+                System.out.println("Escolha o novo valor a ser contido no índice");
+                int inteiroVetor2 = scan.nextInt();
+                vetorInteiro[indiceVetor2] = inteiroVetor2;
+            }
         }
 
     }

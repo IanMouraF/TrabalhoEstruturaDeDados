@@ -36,7 +36,6 @@ public class listaOpcoes {
         int posicao = scan.nextInt();
         if (posicao < 1 || posicao > tamanho) {
             System.out.println("Posição inválida.");
-            return;
         }
         System.out.println("Qual o novo valor dessa posição?");
         int novoValor = scan.nextInt();
@@ -51,6 +50,39 @@ public class listaOpcoes {
         } else {
             System.out.println("Posição não encontrada na lista.");
         }
+    }
+    //3
+    public void excluir(){
+        System.out.println("Qual posição deseja selecionar para excluir o número?");
+        int posicao = scan.nextInt();
+        if (posicao < 1 || posicao > tamanho) {
+            System.out.println("Posição inválida.");
+        }
+        if (posicao == 1) {
+            inicio = inicio.proximo;
+            if (inicio != null) {
+                inicio.anterior = null;
+            } else {
+                fim = null;
+            }
+        } else if (posicao == tamanho) {
+            fim = fim.anterior;
+            fim.proximo = null;
+        } else {
+            int contador = 1;
+            No atual = inicio;
+            while (atual != null && contador < posicao) {
+                atual = atual.proximo;
+                contador++;
+            }
+            atual.anterior.proximo = atual.proximo;
+            atual.proximo.anterior = atual.anterior;
+        }
+        tamanho--;
+    }
+    //4
+    public void pesquisar(){
+        
     }
     //5
     public void mostrar() {
@@ -70,6 +102,9 @@ public class listaOpcoes {
         lista.mostrar();
         lista.alterar();
         lista.mostrar();
+        lista.excluir();
+        lista.mostrar();
+
     }
     
 }

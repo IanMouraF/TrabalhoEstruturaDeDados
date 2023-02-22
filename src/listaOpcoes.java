@@ -82,7 +82,22 @@ public class listaOpcoes {
     }
     //4
     public void pesquisar(){
-        
+        System.out.println("Qual valor deseja pesquisar?");
+        int valor = scan.nextInt();
+        int posicao = 1;
+        boolean presente = false;
+        No atual = inicio;
+        while (atual != null) {
+            if (atual.dado == valor) {
+                System.out.println("Valor encontrado na posição " + posicao + " da lista.");
+                presente = true;
+            }
+            atual = atual.proximo;
+            posicao++;
+        }
+        if (presente == false){
+            System.out.println("Valor não encontrado na lista.");
+        }
     }
     //5
     public void mostrar() {
@@ -100,9 +115,11 @@ public class listaOpcoes {
             lista.inserir();
         }
         lista.mostrar();
-        lista.alterar();
-        lista.mostrar();
-        lista.excluir();
+        //lista.alterar();
+        //lista.mostrar();
+       // lista.excluir();
+       // lista.mostrar();
+        lista.pesquisar();
         lista.mostrar();
 
     }

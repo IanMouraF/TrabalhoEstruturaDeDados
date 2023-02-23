@@ -14,6 +14,58 @@ public class listaOpcoes {
     
     Scanner scan = new Scanner(System.in);
 
+    public void listaOpcoes() {
+        String listaPrintada =
+                "------------------------------\n" +
+                        "|           Lista            |\n" +
+                        "------------------------------\n" +
+                        "|   1 -  Inserir dado        |\n" +
+                        "|   2 -  Alterar dado        |\n" +
+                        "|   3 -  Excluir dado        |\n" +
+                        "|   4 -  Pesquisar dados     |\n" +
+                        "|   5 -  Mostrar dados       |\n" +
+                        "|   6 -  Voltar              |\n" +
+                        "------------------------------\n" +
+                        "Selecione a opcao desejada: ";
+
+        System.out.println(listaPrintada);
+
+        Scanner leitorOpcao = new Scanner(System.in);
+
+        int opcaoSelecionada = 0;
+
+        while (opcaoSelecionada < 5) {
+            opcaoSelecionada = leitorOpcao.nextInt();
+
+            if (opcaoSelecionada == 0) {
+                listaOpcoes();
+            }
+            if (opcaoSelecionada == 1) {
+                inserir();
+                listaOpcoes();
+            }
+            if (opcaoSelecionada == 2) {
+                alterar();
+                listaOpcoes();
+            }
+            if (opcaoSelecionada == 3) {
+                excluir();
+                listaOpcoes();
+            }
+            if (opcaoSelecionada == 4) {
+                pesquisar();
+                listaOpcoes();
+            }
+            if (opcaoSelecionada == 5) {
+                mostrar();
+                listaOpcoes();
+            }
+            if (opcaoSelecionada == 6) {
+                Main.loop();
+            }
+        }
+    }
+
     //1
     public void inserir() {
         No novoNo = new No();
@@ -107,21 +159,6 @@ public class listaOpcoes {
             atual = atual.proximo;
         }
         System.out.println();
-    }
-    
-    public static void main(String[] args) {
-        listaOpcoes lista = new listaOpcoes();
-        for (int i = 0; i < 3; i++) {
-            lista.inserir();
-        }
-        lista.mostrar();
-        //lista.alterar();
-        //lista.mostrar();
-       // lista.excluir();
-       // lista.mostrar();
-        lista.pesquisar();
-        lista.mostrar();
-
     }
     
 }

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class vetorOpcoes {
+public class VetorOpcoes {
 
 
     static Scanner scan = new Scanner(System.in);
@@ -126,7 +126,7 @@ public class vetorOpcoes {
         System.out.println("Escolha um índice para alterar o valor contido nele");
         int indiceVetor2 = scan.nextInt();
 
-        if (indiceVetor2 == 0) {
+        if (vetorInteiro[indiceVetor2] == 0) {
             System.out.println("Esse índice ainda não tem um valor a ser alterado, utilize Inserir Dado");
         } else {
 

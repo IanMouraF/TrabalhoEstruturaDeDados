@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-public class listaOpcoes {
-    
+public class ListaOpcoes {
+
     private static class No {
         int dado;
         No proximo;
@@ -11,7 +11,7 @@ public class listaOpcoes {
     No inicio;
     No fim;
     int tamanho;
-    
+
     Scanner scan = new Scanner(System.in);
 
     public void listaOpcoes() {
@@ -82,6 +82,7 @@ public class listaOpcoes {
         }
         tamanho++;
     }
+
     //2
     public void alterar() {
         System.out.println("Qual posição deseja selecionar?");
@@ -103,37 +104,40 @@ public class listaOpcoes {
             System.out.println("Posição não encontrada na lista.");
         }
     }
+
     //3
-    public void excluir(){
+    public void excluir() {
         System.out.println("Qual posição deseja selecionar para excluir o número?");
         int posicao = scan.nextInt();
         if (posicao < 1 || posicao > tamanho) {
             System.out.println("Posição inválida.");
-        }
-        if (posicao == 1) {
-            inicio = inicio.proximo;
-            if (inicio != null) {
-                inicio.anterior = null;
-            } else {
-                fim = null;
-            }
-        } else if (posicao == tamanho) {
-            fim = fim.anterior;
-            fim.proximo = null;
         } else {
-            int contador = 1;
-            No atual = inicio;
-            while (atual != null && contador < posicao) {
-                atual = atual.proximo;
-                contador++;
+            if (posicao == 1) {
+                inicio = inicio.proximo;
+                if (inicio != null) {
+                    inicio.anterior = null;
+                } else {
+                    fim = null;
+                }
+            } else if (posicao == tamanho) {
+                fim = fim.anterior;
+                fim.proximo = null;
+            } else {
+                int contador = 1;
+                No atual = inicio;
+                while (atual != null && contador < posicao) {
+                    atual = atual.proximo;
+                    contador++;
+                }
+                atual.anterior.proximo = atual.proximo;
+                atual.proximo.anterior = atual.anterior;
             }
-            atual.anterior.proximo = atual.proximo;
-            atual.proximo.anterior = atual.anterior;
+            tamanho--;
         }
-        tamanho--;
     }
+
     //4
-    public void pesquisar(){
+    public void pesquisar() {
         System.out.println("Qual valor deseja pesquisar?");
         int valor = scan.nextInt();
         int posicao = 1;
@@ -147,10 +151,11 @@ public class listaOpcoes {
             atual = atual.proximo;
             posicao++;
         }
-        if (presente == false){
+        if (presente == false) {
             System.out.println("Valor não encontrado na lista.");
         }
     }
+
     //5
     public void mostrar() {
         No atual = inicio;
@@ -160,5 +165,5 @@ public class listaOpcoes {
         }
         System.out.println();
     }
-    
+
 }

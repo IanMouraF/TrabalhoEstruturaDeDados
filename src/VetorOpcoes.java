@@ -125,16 +125,17 @@ public class VetorOpcoes {
 
         System.out.println("Escolha um índice para alterar o valor contido nele");
         int indiceVetor2 = scan.nextInt();
+        if (indiceVetor2 > tamanhoVetor || indiceVetor2 < 0) {
+            System.out.println("Escolha um índice de 0 a " + tamanhoVetor + "!");
+            alterarDado();
 
-        if (vetorInteiro[indiceVetor2] == 0) {
-            System.out.println("Esse índice ainda não tem um valor a ser alterado, utilize Inserir Dado");
         } else {
 
-            if (indiceVetor2 > tamanhoVetor || indiceVetor2 < 0) {
-                System.out.println("Escolha um índice de 0 a " + tamanhoVetor + "!");
-                alterarDado();
-
+            if (vetorInteiro[indiceVetor2] == 0) {
+                System.out.println("Esse índice ainda não tem um valor a ser alterado, utilize Inserir Dado");
             } else {
+
+
                 System.out.println("Escolha o novo valor a ser contido no índice");
                 int inteiroVetor2 = scan.nextInt();
                 vetorInteiro[indiceVetor2] = inteiroVetor2;

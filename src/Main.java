@@ -18,15 +18,15 @@ public class Main {
 
 
     public static void loop(){
-        vetorOpcoes vo = new vetorOpcoes();
-        listaOpcoes lo = new listaOpcoes();
+        VetorOpcoes vo = new VetorOpcoes();
+        ListaOpcoes lo = new ListaOpcoes();
 
         while (y){
             Menu();
     
             if (x == 1 || x == 2){
                 if (x == 1) {
-                    vetorOpcoes.criarVetor();
+                    VetorOpcoes.criarVetor();
                     vo.vetorOpcoes();
                 }if (x == 2) {
                     lo.listaOpcoes();

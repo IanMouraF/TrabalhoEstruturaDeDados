@@ -1,15 +1,16 @@
 import java.util.Scanner;
 
+
 public class VetorOpcoes {
 
+    static int semLimite = 2147483647;
 
     static Scanner scan = new Scanner(System.in);
 
     static int[] vetorInteiro;
 
     public static int[] criarVetor() {
-        System.out.println("Quantos espaços (índices) você deseja para o vetor? (contando com 0)");
-        int indiceScan = scan.nextInt();
+        int indiceScan = Main.numeroInteiro("Quantos espaços (índices) você deseja para o vetor? (contando com 0)", semLimite);
         int[] novoVetor = new int[indiceScan];
         vetorInteiro = novoVetor;
         return novoVetor;
@@ -27,8 +28,7 @@ public class VetorOpcoes {
                         "|   3 -  Pesquisar dado      |\n" +
                         "|   4 -  Mostrar dados       |\n" +
                         "|   5 -  Voltar              |\n" +
-                        "------------------------------\n" +
-                        "Selecione a opcao desejada: ";
+                        "------------------------------";
 
 
         System.out.println(listaPrintada);
@@ -37,44 +37,41 @@ public class VetorOpcoes {
 
         int opcaoSelecionada = 0;
 
-        while (opcaoSelecionada < 5) {
-            opcaoSelecionada = leitorOpcao.nextInt();
 
-            if (opcaoSelecionada == 0) {
-                vetorOpcoes();
-            }
-            if (opcaoSelecionada == 1) {
-                inserirDado();
-                vetorOpcoes();
-            }
-            if (opcaoSelecionada == 2) {
-                alterarDado();
-                vetorOpcoes();
-            }
-            if (opcaoSelecionada == 3) {
-                pesquisarDado();
-                vetorOpcoes();
-            }
-            if (opcaoSelecionada == 4) {
-                mostrarDados();
-                vetorOpcoes();
-            }
-            if (opcaoSelecionada == 5) {
-                Main.loop();
-            }
+        opcaoSelecionada = Main.numeroInteiro("Selecione a opcao desejada: ", 5);
+
+        if (opcaoSelecionada == 0) {
+            vetorOpcoes();
+        }
+        if (opcaoSelecionada == 1) {
+            inserirDado();
+            vetorOpcoes();
+        }
+        if (opcaoSelecionada == 2) {
+            alterarDado();
+            vetorOpcoes();
+        }
+        if (opcaoSelecionada == 3) {
+            pesquisarDado();
+            vetorOpcoes();
+        }
+        if (opcaoSelecionada == 4) {
+            mostrarDados();
+            vetorOpcoes();
+        }
+        if (opcaoSelecionada == 5) {
+            Main.loop();
         }
     }
+
 
     public void inserirDado() {
 
         int tamanhoVetor = vetorInteiro.length - 1;
 
-        System.out.println("Escolha um número inteiro para adicionar");
-        int inteiroVetor = scan.nextInt(); //o inteiro que vai ser adicionado
+        int inteiroVetor = Main.numeroInteiro("Escolha um número inteiro para adicionar", semLimite); // o inteiro que vai ser adicionado
 
-        System.out.println("Escolha um índice de 0 a " + tamanhoVetor + " para inserir seu inteiro");
-        int indiceVetor = scan.nextInt(); //o índice do vetor ao qual o inteiro vai ser adicionado
-
+        int indiceVetor = Main.numeroInteiro("Escolha um índice de 0 a " + tamanhoVetor + " para inserir seu inteiro", semLimite); // o índice do vetor ao qual o inteiro vai ser adicionado
 
         try {
             if (vetorInteiro[indiceVetor] != 0) {
@@ -103,8 +100,7 @@ public class VetorOpcoes {
 
         int tamanhoVetor = vetorInteiro.length - 1;
 
-        System.out.println("Qual valor você deseja verificar se está presente no vetor?:");
-        int vetorPesquisado = scan.nextInt();
+        int vetorPesquisado = Main.numeroInteiro("Qual valor você deseja verificar se está presente no vetor?:", semLimite);
 
         int indiceTeste = 0;
 
@@ -123,8 +119,8 @@ public class VetorOpcoes {
 
         int tamanhoVetor = vetorInteiro.length - 1;
 
-        System.out.println("Escolha um índice para alterar o valor contido nele");
-        int indiceVetor2 = scan.nextInt();
+        int indiceVetor2 = Main.numeroInteiro("Escolha um índice para alterar o valor contido nele", semLimite);
+
         if (indiceVetor2 > tamanhoVetor || indiceVetor2 < 0) {
             System.out.println("Escolha um índice de 0 a " + tamanhoVetor + "!");
             alterarDado();
@@ -135,9 +131,7 @@ public class VetorOpcoes {
                 System.out.println("Esse índice ainda não tem um valor a ser alterado, utilize Inserir Dado");
             } else {
 
-
-                System.out.println("Escolha o novo valor a ser contido no índice");
-                int inteiroVetor2 = scan.nextInt();
+                int inteiroVetor2 = Main.numeroInteiro("Escolha o novo valor a ser contido no índice", semLimite);
                 vetorInteiro[indiceVetor2] = inteiroVetor2;
             }
         }

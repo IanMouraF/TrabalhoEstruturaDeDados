@@ -12,6 +12,8 @@ public class ListaOpcoes {
     No fim;
     int tamanho;
 
+    static int semLimite = 2147483647;
+
     Scanner scan = new Scanner(System.in);
 
     public void listaOpcoes() {
@@ -25,8 +27,7 @@ public class ListaOpcoes {
                         "|   4 -  Pesquisar dados     |\n" +
                         "|   5 -  Mostrar dados       |\n" +
                         "|   6 -  Voltar              |\n" +
-                        "------------------------------\n" +
-                        "Selecione a opcao desejada: ";
+                        "------------------------------\n";
 
         System.out.println(listaPrintada);
 
@@ -34,43 +35,42 @@ public class ListaOpcoes {
 
         int opcaoSelecionada = 0;
 
-        while (opcaoSelecionada < 5) {
-            opcaoSelecionada = leitorOpcao.nextInt();
 
-            if (opcaoSelecionada == 0) {
-                listaOpcoes();
-            }
-            if (opcaoSelecionada == 1) {
-                inserir();
-                listaOpcoes();
-            }
-            if (opcaoSelecionada == 2) {
-                alterar();
-                listaOpcoes();
-            }
-            if (opcaoSelecionada == 3) {
-                excluir();
-                listaOpcoes();
-            }
-            if (opcaoSelecionada == 4) {
-                pesquisar();
-                listaOpcoes();
-            }
-            if (opcaoSelecionada == 5) {
-                mostrar();
-                listaOpcoes();
-            }
-            if (opcaoSelecionada == 6) {
-                Main.loop();
-            }
+        opcaoSelecionada = Main.numeroInteiro("Selecione a opcao desejada: ", 6);
+
+        if (opcaoSelecionada == 0) {
+            listaOpcoes();
+        }
+        if (opcaoSelecionada == 1) {
+            inserir();
+            listaOpcoes();
+        }
+        if (opcaoSelecionada == 2) {
+            alterar();
+            listaOpcoes();
+        }
+        if (opcaoSelecionada == 3) {
+            excluir();
+            listaOpcoes();
+        }
+        if (opcaoSelecionada == 4) {
+            pesquisar();
+            listaOpcoes();
+        }
+        if (opcaoSelecionada == 5) {
+            mostrar();
+            listaOpcoes();
+        }
+        if (opcaoSelecionada == 6) {
+            Main.loop();
         }
     }
+
 
     //1
     public void inserir() {
         No novoNo = new No();
-        System.out.println("Digite o valor a ser inserido:");
-        novoNo.dado = scan.nextInt();
+        novoNo.dado = Main.numeroInteiro("Digite o valor a ser inserido:", semLimite);
         novoNo.proximo = null;
         novoNo.anterior = fim;
         if (fim != null) {
@@ -85,13 +85,11 @@ public class ListaOpcoes {
 
     //2
     public void alterar() {
-        System.out.println("Qual posição deseja selecionar?");
-        int posicao = scan.nextInt();
+        int posicao = Main.numeroInteiro("Qual posição deseja selecionar?", semLimite);
         if (posicao < 1 || posicao > tamanho) {
             System.out.println("Posição inválida.");
         }
-        System.out.println("Qual o novo valor dessa posição?");
-        int novoValor = scan.nextInt();
+        int novoValor = Main.numeroInteiro("Qual o novo valor dessa posição?", semLimite);
         int contador = 1;
         No atual = inicio;
         while (atual != null && contador < posicao) {
@@ -107,8 +105,8 @@ public class ListaOpcoes {
 
     //3
     public void excluir() {
-        System.out.println("Qual posição deseja selecionar para excluir o número?");
-        int posicao = scan.nextInt();
+        System.out.println();
+        int posicao = Main.numeroInteiro("Qual posição deseja selecionar para excluir o número?", semLimite);
         if (posicao < 1 || posicao > tamanho) {
             System.out.println("Posição inválida.");
         } else {
@@ -138,8 +136,7 @@ public class ListaOpcoes {
 
     //4
     public void pesquisar() {
-        System.out.println("Qual valor deseja pesquisar?");
-        int valor = scan.nextInt();
+        int valor = Main.numeroInteiro("Qual valor deseja pesquisar?", semLimite);
         int posicao = 1;
         boolean presente = false;
         No atual = inicio;
@@ -151,7 +148,7 @@ public class ListaOpcoes {
             atual = atual.proximo;
             posicao++;
         }
-        if (presente == false) {
+        if (!presente) {
             System.out.println("Valor não encontrado na lista.");
         }
     }
